@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="pt-BR">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Evidências da auditoria — Loja Virtual LTDA</title>
+<style>
+body{font:1rem/1.5 system-ui,sans-serif;margin:0 auto;max-width:1100px;padding:2rem;color:#172b3b;background:#f4f7f9}
+h1,h2{line-height:1.2} h2{margin-top:2rem}
+table{width:100%;border-collapse:collapse;background:#fff}
+th,td{padding:.65rem;text-align:left;vertical-align:top;border-bottom:1px solid #d7e1ea;overflow-wrap:anywhere}
+th{background:#1d4661;color:#fff} nav a{margin-right:.8rem;color:#164f73}
+@media print{body{padding:0;background:#fff}th{background:#fff;color:#172b3b}tr{break-inside:avoid}}
+</style>
+<body>
+<main>
+<h1>Evidências da auditoria da VM</h1>
+<p>Loja Virtual LTDA · Coleta de evidências para o checklist de auditoria.</p>
+<p>A situação de cada linha indica o resultado da coleta. A conclusão sobre os controles depende da avaliação da evidência.</p>
+<nav aria-label="Controles auditados"><a href="#CTX">Identificação</a><a href="#VM-01">VM-01</a><a href="#VM-02">VM-02</a><a href="#VM-03">VM-03</a><a href="#VM-04">VM-04</a><a href="#VM-05">VM-05</a><a href="#VM-06">VM-06</a></nav>
+<section id="CTX"><h2>Identificação da coleta</h2><table><thead><tr><th scope="col">Verificação</th><th scope="col">Situação da coleta</th><th scope="col">Evidência</th><th scope="col">Fonte</th></tr></thead><tbody><tr><td>Sistema operacional</td><td>Informativo</td><td>Ubuntu 22.04.5 LTS</td><td>/etc/os-release</td></tr>
+<tr><td>Data e hora local</td><td>Informativo</td><td>2026-11-21T16:29:24-03:00</td><td>Relógio da VM</td></tr>
+<tr><td>Privilégio da coleta</td><td>Informativo</td><td>administrador (root)</td><td>Usuário que executou a coleta</td></tr>
+<tr><td>Índices locais APT</td><td>Informativo</td><td>Índice de pacotes mais recente por data do arquivo: 2026-09-30T09:56:10-03:00</td><td>/var/lib/apt/lists (data de arquivo, sem consulta de rede)</td></tr>
+</tbody></table></section>
+<section id="VM-01"><h2>VM-01 · Backup do banco de dados</h2><table><thead><tr><th scope="col">Verificação</th><th scope="col">Situação da coleta</th><th scope="col">Evidência</th><th scope="col">Fonte</th></tr></thead><tbody><tr><td>Artefatos de backup</td><td>Coletado</td><td>0 arquivo(s) candidato(s) com tamanho maior que zero</td><td>/var/backups</td></tr>
+<tr><td>Agendamento cron</td><td>Não localizado</td><td>0 arquivo(s) legível(is) com referência direta a utilitário de backup. Verificar o banco de destino e o último resultado na rotina ou no plugin.</td><td>Arquivos cron locais (comandos omitidos)</td></tr>
+</tbody></table></section>
+<section id="VM-02"><h2>VM-02 · Teste do backup do banco de dados</h2><table><thead><tr><th scope="col">Verificação</th><th scope="col">Situação da coleta</th><th scope="col">Evidência</th><th scope="col">Fonte</th></tr></thead><tbody><tr><td>Evidência do teste de restauração</td><td>Verificação manual</td><td>Procurar registro anterior com data, backup utilizado, validação e resultado. Quando houver teste novo, identificar a data e usar ambiente isolado da loja.</td><td>Registro de teste ou verificação isolada</td></tr>
+</tbody></table></section>
+<section id="VM-03"><h2>VM-03 · Atualização do gerenciador do banco de dados</h2><table><thead><tr><th scope="col">Verificação</th><th scope="col">Situação da coleta</th><th scope="col">Evidência</th><th scope="col">Fonte</th></tr></thead><tbody><tr><td>mariadb-server</td><td>Coletado</td><td>Instalada: 1:10.6.22-0ubuntu0.22.04.1 | Candidata no índice local: 1:10.6.23-0ubuntu0.22.04.1 | Candidata mais recente no índice local | Upgrade não localizado nos logs legíveis</td><td>dpkg-query, apt-cache policy e logs dpkg</td></tr>
+<tr><td>mariadb-server-10.6</td><td>Coletado</td><td>Instalada: 1:10.6.22-0ubuntu0.22.04.1 | Candidata no índice local: 1:10.6.23-0ubuntu0.22.04.1 | Candidata mais recente no índice local | Upgrade não localizado nos logs legíveis</td><td>dpkg-query, apt-cache policy e logs dpkg</td></tr>
+<tr><td>mariadb-server-core-10.6</td><td>Coletado</td><td>Instalada: 1:10.6.22-0ubuntu0.22.04.1 | Candidata no índice local: 1:10.6.23-0ubuntu0.22.04.1 | Candidata mais recente no índice local | Upgrade não localizado nos logs legíveis</td><td>dpkg-query, apt-cache policy e logs dpkg</td></tr>
+<tr><td>mariadb.service</td><td>Coletado</td><td>LoadState=loaded | ActiveState=active</td><td>systemctl show</td></tr>
+<tr><td>mysql.service</td><td>Coletado</td><td>LoadState=loaded | ActiveState=active</td><td>systemctl show</td></tr>
+</tbody></table></section>
+<section id="VM-04"><h2>VM-04 · Atualização do sistema web LojaVirtual</h2><table><thead><tr><th scope="col">Verificação</th><th scope="col">Situação da coleta</th><th scope="col">Evidência</th><th scope="col">Fonte</th></tr></thead><tbody><tr><td>Versão do WordPress</td><td>Coletado</td><td>7.1.5</td><td>/var/www/ecommerce/wp-includes/version.php</td></tr>
+<tr><td>Versão do WooCommerce</td><td>Coletado</td><td>11.1.2</td><td>/var/www/ecommerce/wp-content/plugins/woocommerce/woocommerce.php</td></tr>
+<tr><td>Situação das atualizações</td><td>Verificação manual</td><td>Registrar, no painel do WordPress, a data da última verificação, versões e pendências de núcleo, tema ativo e plugins usados na loja.</td><td>Painel → Atualizações</td></tr>
+</tbody></table></section>
+<section id="VM-05"><h2>VM-05 · Controle de acesso/usuário</h2><table><thead><tr><th scope="col">Verificação</th><th scope="col">Situação da coleta</th><th scope="col">Evidência</th><th scope="col">Fonte</th></tr></thead><tbody><tr><td>Perfis e restrição de acesso</td><td>Verificação manual</td><td>Conferir os perfis no painel. Em sessão separada, validar o acesso permitido de uma conta de teste existente e registrar a restrição ao painel para um perfil sem permissão administrativa. Omitir dados pessoais.</td><td>Painel → Usuários e observação da sessão de teste</td></tr>
+</tbody></table></section>
+<section id="VM-06"><h2>VM-06 · Atualização do sistema de hospedagem de páginas</h2><table><thead><tr><th scope="col">Verificação</th><th scope="col">Situação da coleta</th><th scope="col">Evidência</th><th scope="col">Fonte</th></tr></thead><tbody><tr><td>apache2</td><td>Coletado</td><td>Instalada: 2.4.52-1ubuntu4.23 | Candidata no índice local: 2.4.52-1ubuntu4.23 | Último upgrade localizado: 2026-09-30 11:50:26, 2.4.52-1ubuntu4.15 → 2.4.52-1ubuntu4.23</td><td>dpkg-query, apt-cache policy e logs dpkg</td></tr>
+<tr><td>apache2-bin</td><td>Coletado</td><td>Instalada: 2.4.52-1ubuntu4.23 | Candidata no índice local: 2.4.52-1ubuntu4.23 | Último upgrade localizado: 2026-09-30 11:50:27, 2.4.52-1ubuntu4.15 → 2.4.52-1ubuntu4.23</td><td>dpkg-query, apt-cache policy e logs dpkg</td></tr>
+<tr><td>apache2-data</td><td>Coletado</td><td>Instalada: 2.4.52-1ubuntu4.23 | Candidata no índice local: 2.4.52-1ubuntu4.23 | Último upgrade localizado: 2026-09-30 11:50:27, 2.4.52-1ubuntu4.15 → 2.4.52-1ubuntu4.23</td><td>dpkg-query, apt-cache policy e logs dpkg</td></tr>
+<tr><td>apache2-utils</td><td>Coletado</td><td>Instalada: 2.4.52-1ubuntu4.23 | Candidata no índice local: 2.4.52-1ubuntu4.23 | Último upgrade localizado: 2026-09-30 11:50:28, 2.4.52-1ubuntu4.15 → 2.4.52-1ubuntu4.23</td><td>dpkg-query, apt-cache policy e logs dpkg</td></tr>
+<tr><td>libapache2-mod-php</td><td>Coletado</td><td>Instalada: 2:8.1+92ubuntu1 | Candidata no índice local: 2:8.1+92ubuntu1 | Upgrade não localizado nos logs legíveis</td><td>dpkg-query, apt-cache policy e logs dpkg</td></tr>
+<tr><td>libapache2-mod-php8.1</td><td>Coletado</td><td>Instalada: 8.1.2-1ubuntu2.26 | Candidata no índice local: 8.1.2-1ubuntu2.26 | Último upgrade localizado: 2026-09-28 11:28:55, 8.1.2-1ubuntu2.22 → 8.1.2-1ubuntu2.26</td><td>dpkg-query, apt-cache policy e logs dpkg</td></tr>
+<tr><td>php-common</td><td>Coletado</td><td>Instalada: 2:92ubuntu1 | Candidata no índice local: 2:92ubuntu1 | Upgrade não localizado nos logs legíveis</td><td>dpkg-query, apt-cache policy e logs dpkg</td></tr>
+<tr><td>php8.1-common</td><td>Coletado</td><td>Instalada: 8.1.2-1ubuntu2.26 | Candidata no índice local: 8.1.2-1ubuntu2.26 | Último upgrade localizado: 2026-09-28 11:28:55, 8.1.2-1ubuntu2.22 → 8.1.2-1ubuntu2.26</td><td>dpkg-query, apt-cache policy e logs dpkg</td></tr>
+<tr><td>apache2.service</td><td>Coletado</td><td>LoadState=loaded | ActiveState=active</td><td>systemctl show</td></tr>
+</tbody></table></section>
+</main></body></html>
